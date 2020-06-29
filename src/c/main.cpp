@@ -34,7 +34,8 @@ void colorPredictor(const NeuralNetwork *__nn_param) {
         (float)b / 255.F
     };
     
-    const float* outputs = neural_network_predict(__nn_param, inputs);
+    float outputs[2] = { 0.F };
+    neural_network_predict(outputs, __nn_param, inputs);
 
     if (outputs[0] > outputs[1])
         which = "black";
@@ -104,6 +105,8 @@ void draw() {
 
 int main() {
     pickColor();
+    
+    
 
     NeuralNetwork *brain;
 
